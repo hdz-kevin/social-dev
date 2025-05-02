@@ -40,9 +40,9 @@
       @yield('content')
     </main>
 
-    <footer class="text-center p-5 font-bold uppercase text-gray-400">
-      <p>SocialDev &copy; {{ now()->year }}</p>
-      <p>All rights reserved</p>
+    <footer class="mt-10 text-center p-5 font-bold uppercase text-gray-400">
+      <p>SocialDev - All rights reserved &copy; {{ now()->year }}</p>
+      <p></p>
     </footer>
   </body>
 </html>
