@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Register on SocialDev')
+@section('title', 'Create Account')
 
 @section('content')
   <div class="md:flex md:justify-center md:items-center md:gap-10">
     <div class="md:w-6/12 p-5">
-      <img src="{{ asset('img/register.jpg') }}" alt="imagen registro de usuarios">
+      <img src="{{ asset('img/register.jpg') }}" alt="register img">
     </div>
 
     <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
