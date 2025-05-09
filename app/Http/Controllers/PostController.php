@@ -8,9 +8,6 @@ class PostController extends Controller
 {
     public function index()
     {
-        return response()->json([
-            'message' => 'List of posts',
-            'user' => auth()->user(),
-        ]);
+        return view('profile');
     }
 }

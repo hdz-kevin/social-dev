@@ -9,12 +9,12 @@ use App\Models\User;
 
 class RegisterController extends Controller
 {
-    public function create()
+    public function registrationForm()
     {
         return view('auth.register');
     }
 
-    public function store(Request $request)
+    public function register(Request $request)
     {
         $request->merge([
             'username' => Str::slug($request->username),
@@ -36,6 +36,6 @@ class RegisterController extends Controller
 
         auth()->attempt($request->only('email', 'password'));
 
-        return redirect()->route('posts.index');
+        return redirect()->route('profile.index');
     }
 }

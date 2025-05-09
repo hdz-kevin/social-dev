@@ -19,8 +19,8 @@
         <h1 class="text-3xl font-black">SocialDev</h1>
 
         <nav class="flex gap-3 items-center">
-          <a class="font-bold uppercase text-gray-600" href="#">Login</a>
-          <a class="font-bold uppercase text-gray-600" href="{{ route('register.create') }}">Register</a>
+          <a class="font-bold uppercase text-gray-600" href="{{ route('login') }}">Login</a>
+          <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Register</a>
         </nav>
       </div>
     </header>
