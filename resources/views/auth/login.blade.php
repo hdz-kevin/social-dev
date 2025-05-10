@@ -12,6 +12,10 @@
       <form action="{{ route('login') }}" method="POST" novalidate>
         @csrf
 
+        @if (session('message'))
+          <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ session('message') }}</p>
+        @endif
+
         <div class="mb-5">
           <label for="email" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
           <input
@@ -21,6 +25,7 @@
             placeholder="Your email address"
             class="border border-gray-300 p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
             value="{{ old('email') }}"
+            autofocus
           />
 
           @error('email')

@@ -19,8 +19,17 @@
         <h1 class="text-3xl font-black">SocialDev</h1>
 
         <nav class="flex gap-3 items-center">
-          <a class="font-bold uppercase text-gray-600" href="{{ route('login') }}">Login</a>
-          <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Register</a>
+          @auth
+            <p class="font-bold text-gray-600">
+              Hello:
+              <span class="font-normal">{{ auth()->user()->username }}</span>
+            </p>
+            <a class="font-bold uppercase text-gray-600" href="#">Logout</a>
+          @endauth
+          @guest
+            <a class="font-bold uppercase text-gray-600" href="{{ route('login') }}">Login</a>
+            <a class="font-bold uppercase text-gray-600" href="{{ route('register') }}">Register</a>
+          @endguest
         </nav>
       </div>
     </header>

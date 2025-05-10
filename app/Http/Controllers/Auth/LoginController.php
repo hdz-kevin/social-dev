@@ -12,8 +12,19 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login()
+    public function login(Request $request)
     {
-        return response("POST /login");
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (! auth()->attempt($credentials)) {
+            return back()->with('message', 'Invalid Creadentials');
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->route('profile.index');
     }
 }
