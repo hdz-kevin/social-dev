@@ -19,7 +19,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (! auth()->attempt($credentials)) {
+        if (! auth()->attempt($credentials, (bool) $request->remember)) {
             return back()->with('message', 'Invalid Creadentials');
         }
 

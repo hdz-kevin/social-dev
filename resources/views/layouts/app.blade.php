@@ -24,7 +24,13 @@
               Hello:
               <span class="font-normal">{{ auth()->user()->username }}</span>
             </p>
-            <a class="font-bold uppercase text-gray-600" href="#">Logout</a>
+            <form action="{{ route('logout') }}" method="POST">
+              @csrf
+
+              <button type="submit" class="font-bold uppercase text-gray-600 cursor-pointer">
+                Logout
+              </button>
+            </form>
           @endauth
           @guest
             <a class="font-bold uppercase text-gray-600" href="{{ route('login') }}">Login</a>

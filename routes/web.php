@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -16,13 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn () => view('welcome'))->name('welcome');
 
 Route::get('/register', [RegisterController::class, 'registrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [PostController::class, 'index'])->name('profile.index')->middleware('auth');
