@@ -6,6 +6,8 @@
 
     <title>SocialDev - @yield('title')</title>
 
+    @stack('styles')
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
@@ -18,12 +20,22 @@
       <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-3xl font-black">SocialDev</h1>
 
-        <nav class="flex gap-3 items-center">
+        <nav class="flex gap-4 items-center">
           @auth
-            <p class="font-bold text-gray-600">
+            <a class="font-bold text-gray-600" href="{{ route('profile.show', auth()->user()->username) }}">
               Hello:
               <span class="font-normal">{{ auth()->user()->username }}</span>
-            </p>
+            </a>
+
+            <a class="flex items-center gap-2 bg-white border border-gray-400 p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer"
+              href="{{ route('posts.create') }}">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+              </svg>
+              Post              
+            </a>
+
             <form action="{{ route('logout') }}" method="POST">
               @csrf
 
