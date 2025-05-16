@@ -21,7 +21,7 @@ class PostFactory extends Factory
         return [
             'title' => $faker->sentence(5),
             'description' => $faker->sentence(20),
-            'picture' => $faker->uuid().".png",
+            'image' => $faker->uuid().".png",
             'user_id' => $faker->randomElement([1, 3, 4]),
         ];
     }

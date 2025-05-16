@@ -19,6 +19,6 @@ class ImageController extends Controller
                 ->toPng()
                 ->save($imgPath);
 
-        return response()->json(['image' => $imgName]);
+        return response()->json(['imgName' => $imgName]);
     }
 }

@@ -26,9 +26,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-
 Route::get('/{user:username}', [ProfileController::class, 'show'])->name('profile.show')->middleware('auth');
 
 Route::post('/images', [ImageController::class, 'store'])->name('images.store');
-
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

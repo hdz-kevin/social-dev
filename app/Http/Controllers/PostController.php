@@ -28,7 +28,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'image' => 'required',
+        ], [
+            'image.required' => 'The post image is required'
+        ]);
+
+        // Post::create([...$data, 'user_id' => auth()->id()]);
+        // Creando un post usando relaciones. El post será relacionado con $request->user(). 
+        $request->user()->posts()->create($data);
+
+        return redirect()->route('profile.show', auth()->user()->username);
     }
 
     /**
