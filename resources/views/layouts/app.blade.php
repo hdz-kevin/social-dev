@@ -23,10 +23,10 @@
 
         <nav class="flex gap-4 items-center">
           @auth
-            <a class="font-bold text-gray-600" href="{{ route('profile.show', auth()->user()->username) }}">
+            {{-- <a class="font-bold text-gray-600" href="{{ route('profile.show', auth()->user()->username) }}">
               Hello:
               <span class="font-normal">{{ auth()->user()->username }}</span>
-            </a>
+            </a> --}}
 
             <a class="flex items-center gap-2 bg-white border border-gray-400 p-2 text-gray-600 rounded text-sm uppercase font-bold cursor-pointer"
               href="{{ route('posts.create') }}">
