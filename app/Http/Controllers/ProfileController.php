@@ -16,7 +16,7 @@ class ProfileController extends Controller
      */
     public function show(User $user)
     {
-        $posts = $user->posts;
+        $posts = $user->posts()->paginate(10);
 
         return view('profile', compact('user', 'posts'));
     }

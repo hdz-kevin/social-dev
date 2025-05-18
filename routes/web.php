@@ -26,8 +26,12 @@ Route::post('/register', [RegisterController::class, 'register']);
 Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+// Profile
 Route::get('/{user:username}', [ProfileController::class, 'show'])->name('profile.show')->middleware('auth');
-
+// Post image upload
 Route::post('/images', [ImageController::class, 'store'])->name('images.store');
+// Posts
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
