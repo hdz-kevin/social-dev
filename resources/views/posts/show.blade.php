@@ -24,7 +24,15 @@
       <div class="shadow bg-white p-5 mb-5">
         <p class="text-2xl font-bold text-center mb-4">Comment this Post</p>
 
-        <form action="#" method="POST">
+        @if (session('message'))
+          <div class="bg-green-500 p-2 rounded-lg mb-6 text-white text-center uppercase font-bold">
+            {{ session('message') }}
+          </div>
+        @endif
+
+        <form action="{{ route('comments.store', ['user' => $user->username, 'post' => $post->id]) }}" method="POST">
+          @csrf
+
           <div class="mb-5">
             <label for="comment" class="mb-2 block uppercase text-gray-500 font-bold">Comment</label>
             <textarea
@@ -32,6 +40,7 @@
               name="comment"
               placeholder="Your comment"
               class="border border-gray-300 p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+              autofocus
             >{{ old('comment') }}</textarea>
 
             @error('comment')
