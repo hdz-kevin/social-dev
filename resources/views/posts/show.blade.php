@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <div class="container mx-auto flex">
+  <div class="container mx-auto md:flex">
     <div class="md:w-1/2">
       <img src="{{ asset('uploads/'.$post->image) }}" alt="post image">
 
@@ -20,8 +20,32 @@
       </div>
     </div>
 
-    <div class="md:w-1/2">
-      2
+    <div class="md:w-1/2 p-5">
+      <div class="shadow bg-white p-5 mb-5">
+        <p class="text-2xl font-bold text-center mb-4">Comment this Post</p>
+
+        <form action="#" method="POST">
+          <div class="mb-5">
+            <label for="comment" class="mb-2 block uppercase text-gray-500 font-bold">Comment</label>
+            <textarea
+              id="comment"
+              name="comment"
+              placeholder="Your comment"
+              class="border border-gray-300 p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            >{{ old('comment') }}</textarea>
+
+            @error('comment')
+              <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
+            @enderror
+          </div>
+
+          <input
+            type="submit"
+            value="Comment"
+            class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg"
+          />
+        </form>
+      </div>
     </div>
   </div>
 @endsection

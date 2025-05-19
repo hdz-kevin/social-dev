@@ -42,7 +42,10 @@
 
         <div class="mb-5">
           <label for="description" class="mb-2 block uppercase text-gray-500 font-bold">Description</label>
-          <textarea id="description" name="description" placeholder="Post description"
+          <textarea
+            id="description"
+            name="description"
+            placeholder="Post description"
             class="border border-gray-300 p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
           >{{ old('description') }}</textarea>
 
