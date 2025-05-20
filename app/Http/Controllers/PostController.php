@@ -76,6 +76,15 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post);
+        $post->delete();
+
+        $imgPath = public_path('uploads/'.$post->image);
+
+        if (File::exists($imgPath)) {
+            unlink($imgPath);
+        }
+
+        return redirect()->route('profile.show', auth()->user()->username);
     }
 }

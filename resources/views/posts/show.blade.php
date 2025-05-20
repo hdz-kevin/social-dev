@@ -18,6 +18,18 @@
         <p class="text-sm text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
         <p class="mt-5">{{ $post->description }}</p>
       </div>
+
+      @if ($post->user_id === auth()?->id())
+        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+          @method('DELETE')
+          @csrf
+
+          <input
+          type="submit"
+          value="Delete Post"
+          class="bg-red-500 hover:bg-red-600 p-2 px-3 rounded text-white font-bold mt-4 cursor-pointer">
+        </form>
+      @endif
     </div>
 
     <div class="md:w-1/2 p-5">
