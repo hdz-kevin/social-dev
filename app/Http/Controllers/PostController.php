@@ -48,11 +48,15 @@ class PostController extends Controller
     /**
      * Display the specified Post.
      */
-    public function show(User $user, Post $post)
+    public function show(Request $request, User $user, Post $post)
     {
-        $comments = $post->comments;
-
-        return view('posts.show', compact('user', 'post', 'comments'));
+        return view('posts.show', [
+            'user' => $user,
+            'post' => $post,
+            'comments' => $post->comments,
+            'likes' => $post->likes,
+            'userLiked' => $post->checkLike($request->user()),
+        ]);
     }
 
     /**

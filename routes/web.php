@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostLikesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +29,5 @@ Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->na
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 // Comment
 Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comments.store');
+// Likes
+Route::post('/{user:username}/posts/{post}/likes', PostLikesController::class)->name('posts.likes');
