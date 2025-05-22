@@ -20,4 +20,17 @@ class ProfileController extends Controller
 
         return view('profile', compact('user', 'posts'));
     }
+
+    /**
+     * Show the form for editing the user's profile.
+     *
+     * @param User $user
+     * @return View
+     */
+    public function edit(Request $request, User $user)
+    {
+        $this->authorize('edit', $user);
+
+        return view('profile.edit', compact('user'));
+    }
 }
