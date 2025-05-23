@@ -12,7 +12,8 @@
   <div class="flex justify-center">
     <div class="w-full md:w-8/12 lg:w-6/12 md:flex">
       <div class="w-8/12 sm:w-6/12 md:w-8/12 px-5 mx-auto">
-        <img src="{{ asset('img/user.svg') }}" alt="user profile img">
+        <img src="{{ $user->image ? asset('profiles/'.$user->image) : asset('img/user.svg') }}" alt="user profile img"
+          class="rounded-full object-cover mx-auto" />
       </div>
       <div class="md:w-8/12 p-5 flex flex-col md:justify-center">
         <div class="flex items-center gap-2">
@@ -35,7 +36,7 @@
           <span class="font-normal">Following</span>
         </p>
         <p class="text-gray-800 text-sm font-bold mb-2">
-          0
+          {{ $posts->count() }}
           <span class="font-normal">Posts</span>
         </p>
       </div>

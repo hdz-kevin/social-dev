@@ -28,6 +28,6 @@ class ProfilePolicy
      */
     public function update(User $user, User $userProfile): bool
     {
-        //
+        return $user->id === $userProfile->id;
     }
 }

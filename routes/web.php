@@ -21,7 +21,7 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 // Profile
 Route::get('/{user:username}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('/{user:username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::post('/{user:username}/edit', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/{user:username}/update', [ProfileController::class, 'update'])->name('profile.update');
 // Post image upload
 Route::post('/images', [ImageController::class, 'store'])->name('images.store');
 // Posts

@@ -5,7 +5,7 @@
 @section('content')
   <div class="md:flex md:justify-center">
     <div class="md:w-2/5 bg-white shadow p-6">
-      <form action="#" class="mt-10 md:mt-0">
+      <form action="{{ route('profile.update', $user->username) }}" method="POST" enctype="multipart/form-data" class="mt-10 md:mt-0">
         @csrf
 
         <div class="mb-5">
@@ -17,6 +17,7 @@
             placeholder="Your username"
             value="{{ old('username') ?? $user->username }}"
             class="border border-gray-300 p-3 w-full rounded-lg focus:border-2 focus:border-gray-400 focus:outline-none"
+            autofocus
           />
 
           @error('username')
