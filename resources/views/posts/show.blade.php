@@ -57,7 +57,7 @@
           </div>
         @endif
 
-        @auth
+        {{-- @auth --}}
           <form action="{{ route('comments.store', ['user' => $user->username, 'post' => $post->id]) }}" method="POST">
             @csrf
 
@@ -82,7 +82,7 @@
               class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg"
             />
           </form>
-        @endauth
+        {{-- @endauth --}}
 
         <div class="bg-white shadow mb-5 max-h-96 overflow-y-scroll mt-8">
           @if ($comments->count() > 0)
