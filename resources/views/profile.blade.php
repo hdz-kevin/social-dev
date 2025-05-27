@@ -1,13 +1,5 @@
 @extends('layouts.app')
 
-{{-- @section('title')
-  {{
-    $user->username === auth()->user()->username
-      ? 'Your Profile'
-      : 'Profile: '.$user->username
-  }}
-@endsection --}}
-
 @section('content')
   <div class="flex justify-center">
     <div class="w-full md:w-8/12 lg:w-6/12 md:flex">
@@ -28,28 +20,37 @@
           @endif
         </div>
         <p class="text-gray-800 text-sm font-bold mb-2 mt-4">
-          0
-          <span class="font-normal">Followers</span>
+          @php
+            $followersCount = $user->followers->count();
+          @endphp
+          {{ $followersCount }}
+          <span class="font-normal">@choice('Follower|Followers', $followersCount)</span>
         </p>
         <p class="text-gray-800 text-sm font-bold mb-2">
-          0
+          {{ $user->following->count() }}
           <span class="font-normal">Following</span>
         </p>
         <p class="text-gray-800 text-sm font-bold mb-2">
           {{ $posts->count() }}
           <span class="font-normal">Posts</span>
         </p>
-        @if (auth()->user()->id !== $user->id)
-          <form action="{{ route('users.follow', $user->username) }}" method="POST">
-            @csrf
-            <input type="submit" value="Follow"
-              class="bg-blue-600 hover:bg-blue-700 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
-          </form>
-          {{-- <form action="{{ route('users.unfollow', $user->username) }}" method="POST">
-            @csrf
-            <input type="submit" value="Unfollow"
-              class="bg-blue-600 hover:bg-blue-700 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
-          </form> --}}
+        {{-- follow/unfollow button --}}
+        @if (auth()->user()?->id !== $user->id)
+          {{-- Si no esta autenticado o sigue a $user: follow --}}
+          @if (! auth()->user()?->isFollowing($user))
+            <form action="{{ route('users.follows', $user->username) }}" method="POST">
+              @csrf
+              <input type="submit" value="Follow"
+                class="bg-blue-600 hover:bg-blue-700 text-white uppercase rounded-lg px-4 py-2 text-xs font-bold cursor-pointer">
+            </form>
+          {{-- Si esta autenticado y sigue a $user: unfollow --}}
+          @else
+            <form action="{{ route('users.follows', $user->username) }}" method="POST">
+              @csrf
+              <input type="submit" value="Unfollow"
+                class="bg-red-600 hover:bg-red-700 text-white uppercase rounded-lg px-4 py-2 text-xs font-bold cursor-pointer">
+            </form>
+          @endif
         @endif
       </div>
     </div>

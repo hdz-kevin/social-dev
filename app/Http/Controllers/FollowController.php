@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 
 class FollowController extends Controller
 {
-    public function store(Request $request, User $user)
+    /**
+     * Toggle follow/unfollow a user.
+     *
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function __invoke(Request $request, User $user)
     {
+        $request->user()->following()->toggle($user->id);
 
-    }
-
-    public function destroy(Request $request, User $user)
-    {
-
+        return back();
     }
 }

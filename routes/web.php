@@ -33,11 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
     // Comment
     Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comments.store');
-    // Likes
+    // Like/Dislike a post
     Route::post('/{user:username}/posts/{post}/likes', PostLikesController::class)->name('posts.likes')->middleware('auth');
-    // Follows
-    Route::post('/{user:username}/follow', [FollowController::class, 'store'])->name('users.follow');
-    Route::delete('/{user:username}/unfollow', [FollowController::class, 'destroy'])->name('users.unfollow');
+    // Follow/Unfollow a user
+    Route::post('/{user:username}/follows', FollowController::class)->name('users.follows');
 });
 
 // Show a single post
