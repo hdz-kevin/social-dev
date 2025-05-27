@@ -39,6 +39,18 @@
           {{ $posts->count() }}
           <span class="font-normal">Posts</span>
         </p>
+        @if (auth()->user()->id !== $user->id)
+          <form action="{{ route('users.follow', $user->username) }}" method="POST">
+            @csrf
+            <input type="submit" value="Follow"
+              class="bg-blue-600 hover:bg-blue-700 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
+          </form>
+          {{-- <form action="{{ route('users.unfollow', $user->username) }}" method="POST">
+            @csrf
+            <input type="submit" value="Unfollow"
+              class="bg-blue-600 hover:bg-blue-700 text-white uppercase rounded-lg px-3 py-1 text-xs font-bold cursor-pointer">
+          </form> --}}
+        @endif
       </div>
     </div>
   </div>

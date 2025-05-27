@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikesController;
@@ -20,6 +21,7 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout')->middleware('auth');
 // Profile
 Route::get('/{user:username}', [ProfileController::class, 'show'])->name('profile.show');
+
 Route::middleware('auth')->group(function () {
     Route::get('/{user:username}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/{user:username}/update', [ProfileController::class, 'update'])->name('profile.update');
@@ -33,6 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/{user:username}/posts/{post}', [CommentController::class, 'store'])->name('comments.store');
     // Likes
     Route::post('/{user:username}/posts/{post}/likes', PostLikesController::class)->name('posts.likes')->middleware('auth');
+    // Follows
+    Route::post('/{user:username}/follow', [FollowController::class, 'store'])->name('users.follow');
+    Route::delete('/{user:username}/unfollow', [FollowController::class, 'destroy'])->name('users.unfollow');
 });
 
 // Show a single post
