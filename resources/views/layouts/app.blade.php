@@ -19,7 +19,7 @@
   <body class="bg-gray-100">
     <header class="border-b border-gray-300 p-5 bg-white shadow">
       <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-3xl font-black">SocialDev</h1>
+        <a href="{{ route('home') }}" class="text-3xl font-black">SocialDev</a>
 
         <nav class="flex gap-4 items-center">
           @auth
