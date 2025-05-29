@@ -55,7 +55,7 @@ class PostController extends Controller
             'post' => $post,
             'comments' => $post->comments,
             'likes' => $post->likes,
-            'userLiked' => auth()->check() ? $post->checkLike($request->user) : null,
+            'userLiked' => auth()->check() ? $post->checkLike($request->user()) : null,
         ]);
     }
 
